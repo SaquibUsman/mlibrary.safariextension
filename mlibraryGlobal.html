@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+
+<script>
+	safari.application.addEventListener("command", performCommandArticle, false)
+	function performCommandArticle(event){
+		if(event.command != "doArticleSearch"){
+			return;
+		}
+
+		//get the current user right-click selection 
+		var query = event.userInfo;
+		query = encodeURIComponent(query);
+	 	//remove characters im
+	 	query = query.replace(/%20/g,"+");
+	 	//add pluses between all the words
+
+	 	var pubUrl = "http://www.lib.umich.edu/articles/search?kw="+query;
+
+		//settings determine how new tab will open
+		var resultsType = safari.extension.settings.getItem("resultsType");
+
+		if(resultsType == "foreground") {
+	    var tab = safari.application.activeBrowserWindow.openTab("foreground");
+	    tab.url = pubUrl;
+		}
+		if(resultsType == "background") {
+		    var tab = safari.application.activeBrowserWindow.openTab("background");
+		    tab.url = pubUrl;
+		}
+		if(resultsType == "new") {
+		    safari.application.openBrowserWindow();
+		    safari.application.activeBrowserWindow.activeTab.url = pubUrl;
+		}
+		if(resultsType == "current") {
+		    safari.application.activeBrowserWindow.activeTab.url = pubUrl;
+		}
+}
+
+safari.application.addEventListener("command", performCommand, false)
+
+function performCommand(event){
+
+	if(event.command != "doMirlynSearch"){
+		return;
+	}
+
+
+	//get the current user right-click selection 
+	var query = event.userInfo;
+	query = encodeURIComponent(query);
+ 	//remove characters im
+ 	query = query.replace(/%20/g,"+");
+ 	//add pluses between all the words
+
+ 	var pubUrl = "http://mirlyn.lib.umich.edu/Search/Home?checkspelling=true&type=all&lookfor="+query;
+
+	//settings determine how new tab will open
+	var resultsType = safari.extension.settings.getItem("resultsType");
+
+	if(resultsType == "foreground") {
+    var tab = safari.application.activeBrowserWindow.openTab("foreground");
+    tab.url = pubUrl;
+	}
+	if(resultsType == "background") {
+	    var tab = safari.application.activeBrowserWindow.openTab("background");
+	    tab.url = pubUrl;
+	}
+	if(resultsType == "new") {
+	    safari.application.openBrowserWindow();
+	    safari.application.activeBrowserWindow.activeTab.url = pubUrl;
+	}
+	if(resultsType == "current") {
+	    safari.application.activeBrowserWindow.activeTab.url = pubUrl;
+	}
+}
+
+safari.application.addEventListener("validate", validateCommand, false);
+
+function validateCommand(event) {
+
+	//Disable Context Menu Item if nothing is selected In global.html
+    if (event.command !== "doMirlynSearch"){
+		if (event.command !== "doArticleSearch"){
+			return;
+		}
+    }
+    
+    var query = event.userInfo;
+    if (query.length == 0 || !query) {
+        event.target.disabled = true;
+    }
+
+    //truncate results if greater than 25
+    if (query.length > 25) {
+    query = query.substr(0,25);
+    query = query.replace(/^\s+|\s+$/g,"");
+    query = query + '...'
+	}
+	
+	//Display search term in context menu
+	if (event.command == "doArticleSearch"){
+		event.target.title = 'Search for "'+query+'" on ArticleSearch'; 
+	}
+	if (event.command == "doMirlynSearch"){
+		event.target.title = 'Search for "'+query+'" on Mirlyn'; 
+	}
+
+}
+
+</script>
+
+

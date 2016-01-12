@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>saquib usman</string>
+	<key>Builder Version</key>
+	<string>11601.3.9</string>
+	<key>CFBundleDisplayName</key>
+	<string>UMLibrary Search</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.mlibrary</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Context Menu Items</key>
+		<array>
+			<dict>
+				<key>Command</key>
+				<string>doMirlynSearch</string>
+				<key>Identifier</key>
+				<string>contextMirlyn</string>
+				<key>Title</key>
+				<string>Mirlyn Search</string>
+			</dict>
+			<dict>
+				<key>Command</key>
+				<string>doArticleSearch</string>
+				<key>Identifier</key>
+				<string>contextArticle</string>
+				<key>Title</key>
+				<string>Article Plus Search</string>
+			</dict>
+		</array>
+		<key>Global Page</key>
+		<string>mlibraryGlobal.html</string>
+	</dict>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>Start</key>
+			<array>
+				<string>injectedScript.js</string>
+			</array>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>Mirlyn &amp; Article Plus Search</string>
+	<key>DeveloperIdentifier</key>
+	<string>M9756MCLHA</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
